@@ -5,13 +5,13 @@ import com.theincgi.autocrafter.blocks.BlockAutoCrafter;
 import com.theincgi.autocrafter.tiles.TileAutoCrafter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.vector.Vector3f;
 
 public class RendererAutoCrafter extends TileEntityRenderer<TileAutoCrafter> {
     public RendererAutoCrafter(TileEntityRendererDispatcher tileEntityRendererDispatcher)

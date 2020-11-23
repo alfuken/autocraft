@@ -80,7 +80,7 @@ public class PacketForClientToUpdateTileAutoCrafter extends TilePacket {
                     Utils.log("tile at " + message.p.toString() + " is null on client :/ wtf?");
                     return;
                 }
-                ourTile.read(w.getBlockState(message.p), message.autocrafterNbt);
+                ourTile.read(message.autocrafterNbt);
             });
             ctx.get().setPacketHandled(true);
         }

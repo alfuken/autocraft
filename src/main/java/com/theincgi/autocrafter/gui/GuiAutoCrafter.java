@@ -5,7 +5,6 @@
 
 package com.theincgi.autocrafter.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.theincgi.autocrafter.PacketHandler;
 import com.theincgi.autocrafter.containers.ContainerAutoCrafter;
@@ -50,11 +49,11 @@ public class GuiAutoCrafter extends ContainerScreen<ContainerAutoCrafter> {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
+    public void render(int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground();
+        super.render(mouseX, mouseY, partialTicks);
         if (this.minecraft.player.inventory.getItemStack().isEmpty() && this.hoveredSlot != null && this.hoveredSlot.getHasStack()) {
-            this.renderTooltip(matrixStack, this.hoveredSlot.getStack(), mouseX, mouseY);
+            this.renderTooltip(this.hoveredSlot.getStack(), mouseX, mouseY);
         }
     }
 
@@ -90,14 +89,14 @@ public class GuiAutoCrafter extends ContainerScreen<ContainerAutoCrafter> {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY)
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         int x = this.width / 2 - 88;
         int y = this.height / 2 - 83;
         Minecraft.getInstance().getTextureManager().bindTexture(this.background);
         int j = (this.width - this.xSize) / 2;
         int k = (this.height - this.ySize) / 2;
-        this.blit(matrixStack, j, k, 0, 0, this.xSize, this.ySize);
+        this.blit(j, k, 0, 0, this.xSize, this.ySize);
         this.drawImage(this.background, x, y, 176, 166, 0.0F, 0.0F, 0.6875F, 0.6484375F);
         this.prev.draw(mouseX, mouseY, x, y);
         this.next.draw(mouseX, mouseY, x, y);
@@ -132,14 +131,14 @@ public class GuiAutoCrafter extends ContainerScreen<ContainerAutoCrafter> {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY)
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        super.drawGuiContainerForegroundLayer(matrixStack, mouseX, mouseY);
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         String s = this.tileAutoCrafter.getDisplayName().getUnformattedComponentText();
         // super.drawString(Minecraft.getInstance().fontRenderer.d,s, 88,6, 0x404040);
 
-        Minecraft.getInstance().fontRenderer.drawString(matrixStack, s, 88 - Minecraft.getInstance().fontRenderer.getStringWidth(s) / 2, 6, 0x404040);
-        Minecraft.getInstance().fontRenderer.drawString(matrixStack, this.playerInv.getDisplayName().getString(), 8, 72, 0x404040);
+        Minecraft.getInstance().fontRenderer.drawString(s, 88 - Minecraft.getInstance().fontRenderer.getStringWidth(s) / 2, 6, 0x404040);
+        Minecraft.getInstance().fontRenderer.drawString(this.playerInv.getDisplayName().getString(), 8, 72, 0x404040);
     }
 
     @Override

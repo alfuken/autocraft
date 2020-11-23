@@ -4,7 +4,6 @@ import com.theincgi.autocrafter.AutoCrafter;
 import com.theincgi.autocrafter.Recipe;
 import com.theincgi.autocrafter.Utils;
 import com.theincgi.autocrafter.containers.ContainerAutoCrafter;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -113,9 +112,9 @@ public class TileAutoCrafter extends TileEntity implements ITickableTileEntity, 
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compound)
+    public void read(CompoundNBT compound)
     {
-        super.read(state, compound);
+        super.read(compound);
 
         if (compound.contains("inventory"))
         {
@@ -164,7 +163,7 @@ public class TileAutoCrafter extends TileEntity implements ITickableTileEntity, 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet)
     {
-        this.read(this.getBlockState(), packet.getNbtCompound());
+        this.read(packet.getNbtCompound());
     }
 
     @Override

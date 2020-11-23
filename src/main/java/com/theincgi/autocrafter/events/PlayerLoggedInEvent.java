@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 @Mod.EventBusSubscriber
 public class PlayerLoggedInEvent {
@@ -24,13 +23,13 @@ public class PlayerLoggedInEvent {
                 new BlockPos(pos.getX() - distance, 0, pos.getZ() - distance),
                 new BlockPos(pos.getX() + distance, 255, pos.getZ() + distance)
             );
-            PacketDistributor.PacketTarget ptarget = PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(
-                pos.getX(),
-                pos.getY(),
-                pos.getZ(),
-                distance,
-                event.getWorld().getDimensionKey()
-            ));
+//            PacketDistributor.PacketTarget ptarget = PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(
+//                pos.getX(),
+//                pos.getY(),
+//                pos.getZ(),
+//                distance,
+//                event.getWorld().getDimension().getType()
+//            ));
             for (TileEntity te : event.getWorld().tickableTileEntities)
             {
                 if (
